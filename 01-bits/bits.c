@@ -49,7 +49,10 @@
  *          naoEhZero(7) -> 1
  */
 int32_t naoEhZero(int32_t x) {
-    return -1;
+    //O operador ! converte um operando diferente de zero em 0 e um operando zero em 1.
+    //Se x for diferente de zero, primeiro é convertido para 0 e depois para 1.
+    //Se x for zero, primeiro é convertido para 1 e depois para 0.
+    return !!x;
 }
 
 /* Número é par ou não
