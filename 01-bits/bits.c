@@ -106,7 +106,13 @@ int32_t mod8(int32_t x) {
  *          ehPositivo(-343) -> 0
  */
 int32_t ehPositivo(int32_t x) {
-    return -1;
+    //Se x for positivo, seu bit mais significativo sera 0. 
+    //Fazendo o shift aritmético para direita 31 vezes, repetiremos o zero em todos os bits, obtendo o valor 0.
+    //O operador ! converte zero para 1.
+    //Se x for negativo, seu bit mais significativo sera 1.
+    //Fazendo o shift aritmético para direita 31 vezes, repetiremos o 1 em todos os bits, obtendo um valor diferente de zero.
+    //O operador ! esse numero diferente de zero para 0.
+    return !(x>>31);
 }
 
 /* Negativo sem -
@@ -123,7 +129,9 @@ int32_t ehPositivo(int32_t x) {
  *          negativo(42) -> -42
  */
 int32_t negativo(int32_t x) {
-    return -1;
+    //complemento a 2 é o principal padrao de representacao de numeros negativos em computadores
+    //fazemos o complemento de x e depois somamos 1 unidade
+    return (~x)+1;
 }
 
 /* Implementação do & usando bitwise
@@ -159,7 +167,9 @@ int32_t bitwiseAnd(int32_t x, int32_t y) {
  *          ehIgual(16, 8) -> 0
  */
 int32_t ehIgual(int32_t x, int32_t y) {
-    return -1;
+    //x^y so vai retornar zero se x e y forem iguais. Em qualquer outro caso retorna um valor diferente de zero.
+    //O operador ! usa o resultado da operacao anterior, tranformando zero em 1 e qualquer numero diferente de zero em 0.
+    return !(x^y);
 }
 
 /*
@@ -270,7 +280,7 @@ int main() {
     puts(ANSI_COLOR_BLUE "Primeiro lab - bits" ANSI_COLOR_RESET);
     puts("");
 
-    puts("Teste: ehZero");
+    puts("Teste: naoEhZero");
     teste(naoEhZero(0), 0);
     teste(naoEhZero(1), 1);
     teste(naoEhZero(1024), 1);
