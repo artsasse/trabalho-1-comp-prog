@@ -14,16 +14,16 @@
  * Não está permitido o uso de if-else, for, while, switch, etc.
  *
  * Forma de avaliação:
- *      - Quantas operações o aluno utlizou para realizar a tarefa (se está dentro da quantidade aceitável)
+ *      - Quantas operações o aluno utilizou para realizar a tarefa (se está dentro da quantidade aceitável)
  *      - Explicação do código -- deverá ser o mais claro possível,
  *          imaginando que qualquer pessoa sem conhecimento prévio da
  *          matéria consiga entender o que foi feito, em detalhes.
  *      - As resoluções com menos operações do que a do monitor terão bonificação.
  *
  * Assinatura:
- *      Aluno: <nome>
- *      DRE: <DRE>
- *      versão do GCC utilizada: XX.XX.XX
+ *      Alunos: Arthur Mendonça Sasse - Gabriel Bitencourt
+ *      DRE: 117206692 - XXXXXXXX
+ *      versão do GCC utilizada: 10.2.0
  *
  */
 
