@@ -70,7 +70,15 @@ int32_t naoEhZero(int32_t x) {
  *          ehPar(7) -> 0
  */
 int32_t ehPar(int32_t x) {
-    return -1;
+    //do segundo bit até o bit mais significativo, todos representam valores divisíveis por 2.
+    //O bit que determina se o número é par ou ímpar é o menos significativo.
+    //Ele representa adicionar ou não + 1 a um número que sabemos que é par.
+    //Se adicionamos, o número fica ímpar. Se não adicionamos, o número se mantém par.
+    //Por isso, fazemos uma mascara com o número 1 usando o operador &, para obter apenas o bit menos significativo.
+    //Se o bit menos significativo de x for 1, o resultado da primeira operação será 1, o número é impar.
+    //Se o bit menos significativo de x for 0, o resultado da primeira operação será 0, o número é par.
+    //Usamos o operador ! apenas para inverter o resultado.
+    return !(x & 1);
 }
 
 /*
@@ -190,7 +198,8 @@ int32_t ehIgual(int32_t x, int32_t y) {
  *          mult7(7) -> 49
  */
 int32_t mult7(int32_t x) {
-    return -1;
+    //falta explicar (caso positivo e negativo)
+    return (x<<3) - x;
 }
 
 /*
