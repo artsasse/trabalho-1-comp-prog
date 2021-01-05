@@ -89,7 +89,11 @@ int32_t ehPar(int32_t x) {
  *          mod8(10) -> 2
  */
 int32_t mod8(int32_t x) {
-    return -1;
+    //Do 4° bit até o bit mais significativo, todos os valores representados por esses bits sao divisiveis por 8.
+    //O que vai determinar o modulo da divisao sao os valores nos 3 bits menos significativos
+    //Esses 3 bits representam todos os valores menores que 8, até zero. Logo, representam todos os valores de modulo de 8.
+    //A representacao dos negativos em complemento a 2 garante que o modulo também funcione para os negativos.
+    return x & 7;
 }
 
 /* Número positivo ou não
@@ -111,7 +115,7 @@ int32_t ehPositivo(int32_t x) {
     //O operador ! converte zero para 1.
     //Se x for negativo, seu bit mais significativo sera 1.
     //Fazendo o shift aritmético para direita 31 vezes, repetiremos o 1 em todos os bits, obtendo um valor diferente de zero.
-    //O operador ! esse numero diferente de zero para 0.
+    //O operador ! converte esse numero diferente de zero para 0.
     return !(x>>31);
 }
 
@@ -216,7 +220,11 @@ int32_t mult7(int32_t x) {
  *
  */
 int32_t bitEmP(int32_t x, uint8_t p) {
-    return -1;
+    //fazendo o shift para direita p vezes, trazemos o valor que estava no bit de posicao 'p' para o bit de posicao 0
+    //Depois aplicamos uma mascara com o valor 1 para descobrir o valor que esta nesse bit menos significativo.
+    //O numero 1 só possui o valor 1 no bit 0, logo, quando usamos o operador &, se o bit 0 em x for 0, o resultado será 0.
+    //Se o bit 0 em x for 1, o resultado será 1.
+    return (x>>p) & 1;
 }
 
 /*
