@@ -162,7 +162,29 @@ int32_t negativo(int32_t x) {
  *              11 & 1011 -> 0011
  */
 int32_t bitwiseAnd(int32_t x, int32_t y) {
-    return -1;
+    //Usando os operadores ~ e | conseguimos emular a tabela de algebra booleana do operador &
+    
+    // TABELA x & y       
+    //   0|1
+    // 0|0|0|
+    // 1|0|1|
+
+    // TABELA x | y     
+    //   0|1
+    // 0|0|1|
+    // 1|1|1|
+
+    // TABELA ~x | ~y     
+    //   0|1
+    // 0|1|1|
+    // 1|1|0|
+
+    // TABELA ~(~x | ~y)     
+    //   0|1
+    // 0|0|0|
+    // 1|0|1|
+
+    return ~(~x | ~y);
 }
 
 /* Igual sem ==
@@ -198,7 +220,9 @@ int32_t ehIgual(int32_t x, int32_t y) {
  *          mult7(7) -> 49
  */
 int32_t mult7(int32_t x) {
-    //falta explicar (caso positivo e negativo)
+    //8x - x = 7x
+    //primeiro fazemos um shift de 3 bits para esquerda, equivalente a multiplicar por 8
+    //depois subtraimos x, para obter 7x
     return (x<<3) - x;
 }
 
