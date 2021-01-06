@@ -163,7 +163,7 @@ int32_t negativo(int32_t x) {
  */
 int32_t bitwiseAnd(int32_t x, int32_t y) {
     //Usando os operadores ~ e | conseguimos emular a tabela de algebra booleana do operador &
-    
+
     // TABELA x & y       
     //   0|1
     // 0|0|0|
@@ -283,7 +283,12 @@ int32_t bitEmP(int32_t x, uint8_t p) {
  *
  */
 int32_t byteEmP(int32_t x, uint8_t p) {
-    return -1;
+    //p é um valor em bytes, por isso multiplicamos por 8 para obter o valor P em bits
+    //essa multiplicação é feita com o shift para a esquerda 3 vezes
+    //depois fazemos um shift para direita P vezes em x
+    //fazemos isso para trazer o valor que estava no byte p para o byte menos significativo
+    //ao final usamos a mascara 0xFF para descobrir os valores presentes nesse byte menos significativo
+    return (x>>(p<<3)) & 0xFF;
 }
 
 /*
