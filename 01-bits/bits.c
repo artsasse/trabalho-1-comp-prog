@@ -294,7 +294,7 @@ int32_t byteEmP(int32_t x, uint8_t p) {
 /*
  * Negação lógica sem !
  *      Permitido:
- *          Operações: << >> | & +
+ *          Operações: << >> | & + ~
  *
  *      Número máximo de operações: 15
  *      Monitor: 5
@@ -307,7 +307,29 @@ int32_t byteEmP(int32_t x, uint8_t p) {
  *
  */
 int32_t negacaoLogica(int32_t x) {
-    return -1;
+    //v1: return (~((x>>31) | ((~x)+1)>>31)) & 1;
+    //v2: return (~(( x | (~x)+1) )>>31) & 1;
+
+    /*
+    Quando usamos o operador | com x e seu negativo em complemento a 2, em todos os casos o bit mais significativo fica com valor 1.
+    Exceto quando x = 0, nesse caso o bit mais significativo fica com valor 0.
+    (Obs: Até mesmo no caso x = INT32_MIN, em que (~x)+1 também é INT32_MIN, o bit mais significativo fica com valor 1)
+
+    Depois usamos o shift para direita em todos os bits possiveis, para que todos eles passem a ter o valor do bit mais significativo obtido anteriormente.
+    
+    CASO A: 
+        x original diferente de zero.
+        o bit mais significativo de ( x | (~x)+1) é 1.
+        Apos o shift para direita, todos os 32 bits tem valor 1.
+        Somando + 1, obtemos o valor 0.
+    
+    CASO B:
+        x original igual a zero.
+        o bit mais significativo de ( x | (~x)+1) é 0.
+        Apos o shift para direita, todos os 32 bits tem valor 0.
+        Somando + 1, obtemos o valor 1.
+    */
+    return ((( x | (~x)+1) )>>31) + 1;
 }
 
 void teste(int32_t saida, int32_t esperado) {
