@@ -22,8 +22,8 @@
  *
  * Assinatura:
  *      Alunos: Arthur Mendonça Sasse - Gabriel Bitencourt
- *      DRE: 117206692 - XXXXXXXX
- *      versão do GCC utilizada: 10.2.0
+ *      DRE: 117206692 - 117047844
+ *      versão do GCC utilizada: 8.3.0 (Debian 8.3.0-6)
  *
  */
 
@@ -329,7 +329,7 @@ int32_t negacaoLogica(int32_t x) {
         Apos o shift para direita, todos os 32 bits tem valor 0.
         Somando + 1, obtemos o valor 1.
     */
-    return ((( x | (~x)+1) )>>31) + 1;
+    return (( x | ((~x)+1) )>>31) + 1;
 }
 
 void teste(int32_t saida, int32_t esperado) {
